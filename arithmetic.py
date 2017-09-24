@@ -20,13 +20,13 @@ def expression():
 	preop = ''
 	for i in range(num_op+1):
 		if preop == '÷':
-			preoperand = random.randint(1,5) # 防止除数为0
+			preoperand = random.randint(1,20) # 防止除数为0
 			preop = opts[random.randint(0, 4)]
 		elif preop == '/':
-			preoperand = random.randint(1,5)
+			preoperand = random.randint(1,20)
 			preop = opts[random.randint(0, 3)] # 防止连续两个/,如3/4/5
 		else:
-			preoperand = random.randint(0,5)
+			preoperand = random.randint(0,20)
 			preop = opts[random.randint(0, 4)] 
 		tmp.append(str(preoperand))
 		tmp.append(preop)
@@ -147,7 +147,7 @@ def main(argv):
 	try:
 		opts, args = getopt.getopt(argv,"hn:",["n="])
 	except getopt.GetoptError:
-		print ('输入格式：filename.py -n 5')
+		print ('输入格式：python filename.py -n 5')
 		print ('5 位为题目个数')
 		sys.exit(2)
 	for opt, arg in opts:
