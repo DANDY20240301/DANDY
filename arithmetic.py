@@ -38,7 +38,7 @@ def expression():
 		right1_pos = random.randint(left1_pos+3,len(tmp)-2) # 限定右括号位置
 		tmp.insert(left1_pos,'(')
 		tmp.insert(right1_pos,')')
-		print("".join(tmp[:-1]))
+		# print("".join(tmp[:-1]))
 	except Exception:
 		no_bracket[-1] = "="
 		return no_bracket
@@ -65,7 +65,6 @@ def expression():
 	# 如果有/
 	else:
 		for i in index_list:
-			print(tmp[i-1:i+2],index_list)
 			if tmp[i-1].isdigit() and tmp[i+1].isdigit(): # 用了两次index
 				try:
 					eval(("".join(tmp[:-1])).replace('÷','/')) #判断带括号的式子是否合法
@@ -96,8 +95,6 @@ def tosuffix(expr):
 	suffix = [] # 后缀表达式
 	stack = [] # 操作符栈
 	for e in new_list:
-		print(suffix)
-		print(stack)
 		if type(e) != str: 
 			suffix.append(e)
 		elif e.isdigit(): # 操作数
@@ -120,7 +117,6 @@ def tosuffix(expr):
 
 # 后缀表达式求值
 def calculate(suffix):
-	print(suffix)
 	calStack = []
 	for s in suffix:
 		if type(s) == int:
@@ -132,7 +128,6 @@ def calculate(suffix):
 			operand1 = calStack.pop()
 			result = doMath(s,operand1,operand2)
 			calStack.append(result)
-	print(calStack[0])
 	return calStack.pop()
 
 # 基本运算
