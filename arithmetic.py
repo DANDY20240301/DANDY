@@ -10,6 +10,7 @@ import math
 priority = {'+':1,'-':1,'*':2,'÷':2}
 
 # 生成表达式
+# @profile
 def expression():
 	opts = ['+','-','*','÷','/']
 	op = [] # 运算符列表
@@ -80,6 +81,7 @@ def expression():
 		return tmp  # 防止第一个正确 第二个蒙混过关
 	
 # 把中缀表达式转为后缀表达式
+# @profile
 def tosuffix(expr):
 	new_list = []
 	# 把分数单独作为一种操作数
@@ -116,6 +118,7 @@ def tosuffix(expr):
 	return suffix
 
 # 后缀表达式求值
+# @profile
 def calculate(suffix):
 	calStack = []
 	for s in suffix:
@@ -131,6 +134,7 @@ def calculate(suffix):
 	return calStack.pop()
 
 # 基本运算
+# @profile
 def doMath(op,op1,op2):
 	if op == '+':
 		return op1+op2
@@ -175,7 +179,14 @@ def main(argv):
 		else:
 			print("回答错误！,正确答案是{}\n".format(calculate(suffix)))
 	print("共答对{}题".format(flag)+"," "本次得分：{}".format(round(each_score*flag)))
-		
-	
+
+# 性能测试
+# def performance_main():
+# 	for x in range(0,100000):
+# 		expr = expression()
+# 		suffix = tosuffix(expr)
+# 		calculate(suffix)
+
 if __name__ == '__main__':
+	# performance_main() # 性能测试
 	main(sys.argv[1:])
